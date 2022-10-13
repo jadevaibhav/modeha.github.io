@@ -5,6 +5,7 @@ layout: post
 categories: media
 ---
 Ali and Lina added
+![Swiss Alps](/assets/pdf.pdf)
 ![Swiss Alps](/assets/image_123927839.JPG)
 
 
