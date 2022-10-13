@@ -4,6 +4,7 @@ mathjax: true
 layout: post
 categories: media
 ---
+[get the pdf](/assets/pdf.pdf)
 Ali and Lina added
 ![Swiss Alps](/assets/pdf.pdf)
 ![Swiss Alps](/assets/image_123927839.JPG)
