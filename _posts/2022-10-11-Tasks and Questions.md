@@ -5,7 +5,6 @@ layout: post
 
 
 ## How we downloaded the dataset
-
 In the beginning we start from the unofficial website so we figured out we have to know what does mean the ten digits number XXXXXXXXXX that we need to choose as GAME_ID
 We analyze them and understand that
 
