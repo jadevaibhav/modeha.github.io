@@ -3,78 +3,24 @@ title:  "Tasks and Questions"
 layout: post
 ---
 
-## Heading Two (h2)
 
-### Heading Three (h3)
+## How we downloaded the dataset
 
-#### Heading Four (h4)
-
-##### Heading Five (h5)
-
-###### Heading Six (h6)
+In the beginning we start from the unofficial website so we figured out we have to know what does mean the ten digits number XXXXXXXXXX that we need to choose as GAME_ID
+We analyze them and understand that
 
 
-## Blockquotes
-
-### Single line
-
-> My mom always said life was like a box of chocolates. You never know what you're gonna get.
-
-### Multiline
-
-> What do you get when you cross an insomniac, an unwilling agnostic and a dyslexic?
->
-> You get someone who stays up all night torturing himself mentally over the question of whether or not there's a dog.
->
-> – _Hal Incandenza_
-
-## Horizontal Rule
-
----
-
-## Table
-
-| Title 1          | Title 2          | Title 3         | Title 4         |
-|------------------|------------------|-----------------|-----------------|
-| First entry      | Second entry     | Third entry     | Fourth entry    |
-| Fifth entry      | Sixth entry      | Seventh entry   | Eight entry     |
-| Ninth entry      | Tenth entry      | Eleventh entry  | Twelfth entry   |
-| Thirteenth entry | Fourteenth entry | Fifteenth entry | Sixteenth entry |
-
-## Code
-
-Source code can be included by fencing the code with three backticks. Syntax highlighting works automatically when specifying the language after the backticks.
-
-````
-```javascript
-function foo () {
-    return "bar";
-}
-```
-````
-
-This would be rendered as:
-
-```javascript
-function foo () {
-    return "bar";
-}
-```
-
-## Lists
-
-### Unordered
-
-* First item
-* Second item
-* Third item
-    * First nested item
-    * Second nested item
-
-### Ordered
-
-1. First item
-2. Second item
-3. Third item
-    1. First nested item
-    2. Second nested item
+the first 4 digits identify the season for example 2016 for the 2016-2017 season. The next 2 digits gives the type of game
+- 01 = preseason
+-  02 = regular season
+-  03 = playoffs
+-  04 = all-star
+The final 4 digits identify the specific game number as follow 
+- regular season and preseason games
+- playoff games, the 2nd digit of the specific number gives the round of the playoffs, 
+-3rd digit specifies the matchup, and 
+-4th digit specifies the game (out of 7).
+after that we try to figure it out the structure of the NHL database.
+so we look in to some small parts and save in Jason file and try to see what actually we can do how we can sparssing data in python .
+we see that we have to work on this Jason file to be able to access to the details 
+we tried recursion function to go to nested dictionary in the Jason file but we had som problem about to passing all informations.
