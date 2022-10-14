@@ -7,7 +7,7 @@ categories: media
 Here some test
 [get the pdf](/assets/pdf.pdf.pdf)
 Ali and Lina added
-![Swiss Alps](/assets/pdf.pdf)
+
 ![Swiss Alps](/assets/image_123927839.JPG)
 
 
