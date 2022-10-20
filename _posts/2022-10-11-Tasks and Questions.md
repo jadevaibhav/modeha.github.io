@@ -157,7 +157,7 @@ In this project as of now we have used two APIs which was provided by NHL,
      figure. We chose to add annotations on top of bars for the percentage of goals over all shots, because 
      these proportions could not be visually abstracted simply from the figure, and this was an intuitive way to 
      illustrate them.
-     <img src="figures/figure_1_goals_by_shot_type_2016.png"/>
+     <img src="/assets/figures/figure_1_goals_by_shot_type_2016.png"/>
 </details>
 
 <details>
@@ -180,7 +180,7 @@ In this project as of now we have used two APIs which was provided by NHL,
      and plot the proportion of goals for each bin. We chose to divide the distance into equal bins (as opposed to
      percentiles or other kind of distribution), in order to be able to draw direct conclusion about the relationship of
      goals to the absolute value of distance by visualizing the figure.
-<img src="figures/figure_2_goal_by_distance2018.png"/>
+<img src="/assets/figures/figure_2_goal_by_distance2018.png"/>
 </details>
 
 <details>
@@ -201,21 +201,21 @@ In this project as of now we have used two APIs which was provided by NHL,
      Finally, the curves are somewhat irregular, and adding more data (e.g. averaging through a few years) could add more
      smoothness in the results. Note that to have more smoothed curves and remove outliers, we did not plot the points for
      which we had less than 10 total observations for that type of shot and at that distance in that season.
-<img src="figures/figure_2_goal_by_distance2019.png"/>
+<img src="/assets/figures/figure_2_goal_by_distance2019.png"/>
 </details>
 
 <details>
 <summary>Goals By Season for the season 2020</summary>
      <h4>Insights</h4>
      To be added here. 
-     <img src="figures/figure_2_goal_by_distance2020.png"/>
+     <img src="/assets/figures/figure_2_goal_by_distance2020.png"/>
 </details>
 
 <details>
 <summary>Goals By Distance and Shot type for the season 2017</summary>
      <h4>Insights</h4>
      To be added here. 
-     <img src="figures/figure_3_goals_by_distance_and_shot_type2017.png"/>
+     <img src="/assets/figures/figure_3_goals_by_distance_and_shot_type2017.png"/>
 </details>
 
 ## Advance Visualisations
@@ -224,7 +224,7 @@ In this project as of now we have used two APIs which was provided by NHL,
 <summary>Details</summary>
      <h4>Insights</h4>
      To be added here. 
-     <img src="figures/figure_3_goals_by_distance_and_shot_type2017.png"/>
+     <img src="/assets/figures/figure_3_goals_by_distance_and_shot_type2017.png"/>
 </details>
 
 # Conclusion
