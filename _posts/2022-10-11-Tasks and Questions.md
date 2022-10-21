@@ -134,7 +134,7 @@ In this project as of now we have used two APIs which was provided by NHL,
 <summary>Goals By Season for the season 2020</summary>
      <h4>Insights</h4>
      To be added here. 
-     <img src="figures/idt.png"/>
+     <img src="/assets/figures/idt.png"/>
 </details>
 
 ## Simple Visualisations
