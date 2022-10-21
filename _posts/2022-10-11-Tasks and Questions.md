@@ -153,7 +153,7 @@ We would be interested in studying the impact of tackling and hitting on the cha
 ## Simple Visualisations
 
 <details>
-<summary>Goals By Season for the season 2016</summary>
+<summary>Goals By Season for the season 2016-2018-2019-2020</summary>
      <h4>Insights</h4>
      The most dangerous types of shots for this 2016-2017 season are “deflected” (19.8% of success) followed by 
      “tip-in” shots (17.9% of success). By “most dangerous”, we mean that these shots are the ones that end up the most 
@@ -171,11 +171,7 @@ We would be interested in studying the impact of tackling and hitting on the cha
      these proportions could not be visually abstracted simply from the figure, and this was an intuitive way to 
      illustrate them.
      <img src="/assets/figures/figure_1_goals_by_shot_type_2016.png"/>
-</details>
 
-<details>
-<summary>Goals By Season for the season 2018</summary>
-     <h4>Insights</h4>
      The proportion of goals over all shots increases overall exponentially as the distance diminishes, with a
      maximum proportion of goals >25% when goals are shot at less than 5 feet from the goal. We also note a small,
      local maximum at 75 to 80 feet. This distribution did not increase significantly for seasons 2018-19 to 2020-21. This local
@@ -193,11 +189,8 @@ We would be interested in studying the impact of tackling and hitting on the cha
      and plot the proportion of goals for each bin. We chose to divide the distance into equal bins (as opposed to
      percentiles or other kind of distribution), in order to be able to draw direct conclusion about the relationship of
      goals to the absolute value of distance by visualizing the figure.
-</details>
 
-<details>
-<summary>Goals By Season for the season 2019</summary>
-     <h4>Insights</h4>
+
      Overall, the most dangerous type of shot is the “tip-in” shot taken at a distance of less than 5 feet, followed
      closely by “back-hand” shots: more than 40% of these shots result in a goal. The relationship found in the
      previous questions, i.e. that the probability of a goal augments exponentially as the distance decreases,
