@@ -18,8 +18,8 @@ Table of contents
 * [Introduction](#introduction)
     * [Motivation](#motivation)
 * [Installation](#installation)
-    * [Setup Environment](#setup-environment)
-    * [Install Dependencies](#install-dependencies)
+    * [Setting up Environment](#setup-environment)
+    * [Installing Dependencies](#install-dependencies)
     * [Download Data](#download-data)
 * [Project Structure](#project-structure)
 
@@ -27,7 +27,7 @@ Table of contents
     * [Data Extractions](#docker)
     * [Interactive Debugging Tool](#docker)
     * [Simple Visualisation](#local)
-    * [Advance Visualisation](#public)
+    * [Advance Visualisations](#public)
 
 * [Conclusion](#conclusion)
 * [Authors](#authors)
@@ -120,15 +120,28 @@ In this project as of now we have used two APIs which was provided by NHL,
 
 <details>
 <summary>Tidy Data</summary>
-     <h4>Insights</h4>
-     There is too much information available from the NHL API at this moment. Not all information are useful, based 
-     on the project we take the relevant data out from the nested json and create a single tabular structure aka
-     Dataframe. Below is a glimpse of the tidy data which we had published for further data analysis.
+<h4>Insights</h4>
+There is too much information available from the NHL API at this moment. Not all information are useful, based 
+on the project we take the relevant data out from the nested json and create a single tabular structure aka
+Dataframe. Below is a glimpse of the tidy data which we had published for further data analysis.
+<h3>How to get the number of players in each team</h3>
 
-<img src="figures/df.png">
+We would first format a tidy dataframe that includes all types of events, with events as rows and including datetime, eventType,
+periodType, penaltySeverity, penaltyMinutes, and team, as columns. The events would to be sorted in order of their occurrence in time during the game (datetime).
+We would create an empty (np.nan) column for the number of players on ice, and then program a loop to iterate over all event, while concatenating a list of player counts for each time, n_1 and n_2. At the beginning of the loop, and at the beginning of each period
+(each time the period of the event is not the same as the previous event), we re-initiate the parameters: n_1 = 6 (number of players in first team, including the goalie), n_2 = 6 (number of players in second team, including the goalie).
+Eight parameters would be set: penalty_player_A_team_1=None, end_time_of_penalty_for_player_A_team_1 = Datetime penalty_player_B_team_1 = None, and end_time_of_penalty_for_player_B_team_1=Datetime (as there can be a maximum of 2 players in penalty at the same time);and the four equivalent parameters for team 2. 
+Then, as the loop iterater over all events, each time the eventTypeId == "PENALTY", if "penaltySeverity": "Minor" or "DoubleMinor", the number of player in the team involved in the penalty (Team of the player that is penalized) would be substracted 1, the penalty_player would be set to the name the penalized player, and end_time_of_penalty parameter would be set to DateTime + penaltyMinutes. For subsequent events, as long as the penalty_player is not None, the datetime of the event would be compared to end_time_of_penalty, untill datetime > end_time_of_penalty and then the number of player for that team would be added +1, as the player is back on ice.
+Note that for other types of penalty (e.g. misconduct), the number of player on the ice would not be updated as an immediate player replacement is allowed.
+
+<h3>Engineering additionnal features </h3>
+We would be interested in studying the impact of tackling and hitting on the chance of goals, both (1) at team-level (2 variables), (2) player-level (4 variables), and (3) total through the game (4 variables). Indeed, tackling and hitting has become an important part of hockey, often discussed by commentators, and highly represented in the data under "eventTypeId": "HIT". 
+(1) We would first extract, for each shot event, variables at team-level that corresponds to the time (in minutes) between the shot and the last time a player of the team on which the shot was taken was hit. This would be done by iterating through all events in chronological order, initiating the time at as NaN at the beginning of each period, and updating the time at each time a hit happens, for each team. This would result in variables: time_since_last_hit_team_1 and time_since_last_hit_team_2. 
+(2) Additionally, during the same iteration process, we would update four boolean variables with player-level information to note whether the hitter and the hittee from the last hit event were among the player involved in the shot (shooter, goalie or assist). This would result in variables: hitter_involved_team_1, hittee_involved_team_1, hitter_involved_team_2, hittee_involved_team_2. 
+(3) Finally, to study the relationship between goals and the total number of hits in a game, we would extract 4 variables, during the same iteration process as above. These variables would be initiated at 0 at the beginning of the game, and updated at each hit event for each team and type of player involved (hitter or hittee). This would result in variables: n_hitter_team_1, n_hittee_team_1, n_hitter_team_2, n_hittee_team_2.
+<img src="/assets/figures/df.png">
 </details>
 
-## Interactive Debugging Tool
 
 <details>
 <summary>Goals By Season for the season 2020</summary>
@@ -219,13 +232,43 @@ In this project as of now we have used two APIs which was provided by NHL,
 </details>
 
 ## Advance Visualisations
+## Interactive figures
 
-<details>
-<summary>Details</summary>
-     <h4>Insights</h4>
-     To be added here. 
-     <img src="/assets/figures/figure_3_goals_by_distance_and_shot_type2017.png"/>
-</details>
+Here, we compute the average shot rate per hour for each team and for each location on the ice, rounded to a square foot, as compared to the league average shot rate per hour for that same location in years 2016 to 2020, and normalized by the latter. Formally, we compute: 
+
+((team average shot rate per hour for location k) - (league average shot rate per hour for location k))/ (team average shot rate per hour for location k)
+
+We then display the result for each square foot on the ice, as a heatmap overlayed on a figure of the hockey rink, for the offensive zone. The heatmap was smoothed using a gaussian filter with sigma=5. We plot independent figures the years 2016-17, 2018-2019, 2019-20 and 2020-21, with option to choose the team to display.  
+
+Seaon 2016-2017
+<iframe src="/assets/2016.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+
+Season 2018-2019
+<iframe src="/assets/2018.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+
+Season 2019-2020
+<iframe src="/assets/2019.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+
+Season 2020-2021
+<iframe src="/assets/2020.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+
+Discuss the interpretation of the figures
+
+These figures display the excess shot rate per hour by ice location for the team and year, normalized by the league average for all teams and years (2016 to 2020). The excess shot rate is displayed as a proportion of the league average; it is important to look as the scale from the side colorbar before comparing the teams, because we chose to re-adjust the colorbar scale for each team for a better visualization. 
+
+The visualization of these figures can help understand in which locations each team was more active in taking shoots as compared to the usual level of shot activity in that zone. This can reflect in part the strategy taken by the team during that season. This strategy could also be correlated with the success of that team during that season.  
+
+We consulted the complete league standings on the NHL webside (https://www.nhl.com/standings/2016/league). We note that the Colorado Avalanche was ranked as the last team in the league for the 2016-2017 season, with as few as 48 points total. On the contrary, the Colorado Avalanche was ranked as first of the league for the 2020-2021, with 82 points total and winning the Stanley Cup. This does not directly reflect in the shot maps, since the shot map displays all shots, not only goals. For the 2016-2017 season, the shot map shows that the Colorado Avalanche were doing many shots in excess (up to 120% of the league average for some locations on the ice), specifically in the neutral zone face-off spots (especially left side), and also from the boards behind the goalie. This suggests that shooting from these areas was not successful in achieving goals.  On the contrary, for the 2020-2021 year, the shot map of the Colorado Avalanche shows a shot rate per hour overall closer to the team average, except that an excess of shots were taken from the zone near the referee crease (left side on the plot). This suggests that shooting from that area might have been a good strategy to achieve goals. However, these hypotheses would need to be confirmed in further work that could draw for example shot maps only for the shots that were successful in achieving goals.
+
+Here, we compare the Buffalo Sabres and the Tampa Bay Lightning, while considering that the latter ranked first (for total points) in 2018-2019 and won the Stanley Cup both for 2019-2020 and 2020-2021 seasons. As a comparison, the Buffalo Sabres has been struggling and ranked 27th, 25th and 31th (for total points) for those three years. We thus compare the shot maps of teams for these three years. 
+
+The patterns reflected by shot maps for these years shows a clear difference, when focusing on the locations from where the shots were taken. We note that while the Tampa Bay Lightning has taken an excess of shots of the attacking zone (2018-19, and 2019-2020 seasons), and also from the boards just behind the goalie (2019-2020 and 2020-2021 season). On the contrary, the Buffalo Sabres were taking a number of shots close to the league average, and the only areas in which they were taking excesses of shots were further from the goal, for example, they were taking shots from near the referee crease or from close to the ice center. 
+
+These comparisons suggest that some teams (here, the Tampa Bay Lightning) are more successful in winning when taking more shots from the attacking zone or from the boards behind the goalie, than other teams (here, the Buffalo Sabres) that took shots from further on the ice. Overall, it suggests that not only the excess of shots by itself, but the location of these shots, has an impact on the performance of the team. 
+
+However, this does not give the complete picture. First, all the comparisons done here were done visually, that is, we did not conduct statistical testing nor predictive modelling assessments. Second, we considered only the excess shot rate per hour stratified by all locations on the ice, not whether these shots actually resulted in goals. This does not give us information on the proportion of each shot that achieved goals in each location. For example, we see that the Buffalo Sabres were taking many shots from a furthest distance, and this is associated with the fact that this team did poorly in that season, but we did not directly assess the mechanism involved in the relationship between the shots in question and their unsuccessful results. Finally, it is possible that some locations of shooting do not directly result in goals, but have a broader impact on the game, by either making later goals possible for the team involved or making this team vulnerable to shots by the other team.  Overall, these limitations highlight the necessity to be very careful when making causality or mechanistic assumptions from solely the visualization of data.  
+
+
 
 # Conclusion
 
