@@ -241,16 +241,16 @@ Here, we compute the average shot rate per hour for each team and for each locat
 We then display the result for each square foot on the ice, as a heatmap overlayed on a figure of the hockey rink, for the offensive zone. The heatmap was smoothed using a gaussian filter with sigma=5. We plot independent figures the years 2016-17, 2018-2019, 2019-20 and 2020-21, with option to choose the team to display.  
 
 Seaon 2016-2017
-<iframe src="/assets/2016.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+<iframe src="/assets/2016.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:600px;width:200%;border:none;overflow:hidden;"></iframe>
 
 Season 2018-2019
-<iframe src="/assets/2018.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+<iframe src="/assets/2018.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:600px;width:200%;border:none;overflow:hidden;"></iframe>
 
 Season 2019-2020
-<iframe src="/assets/2019.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+<iframe src="/assets/2019.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:600px;width:200%;border:none;overflow:hidden;"></iframe>
 
 Season 2020-2021
-<iframe src="/assets/2020.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:500px;width:100%;border:none;overflow:hidden;"></iframe>
+<iframe src="/assets/2020.html" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:600px;width:200%;border:none;overflow:hidden;"></iframe>
 
 Discuss the interpretation of the figures
 
